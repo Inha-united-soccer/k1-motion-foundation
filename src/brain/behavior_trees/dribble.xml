@@ -1,0 +1,25 @@
+<root BTCPP_format="4" >
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+
+     <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <ReactiveSequence>
+               <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="control_state>=2" />
+               <Sequence _while="control_state==3">
+                  <KeepRunningUntilFailure>           <!-- 실패할 때까지 반복 -->
+                     <Sequence>
+                        <Inverter>         <!-- 자식 노드 결과 뒤집기, 공이 가까우면 성공으로 두고 공이 멀리 있는동안만 쫓아가도 록-->
+                           <ScriptCondition code="ball_range &lt; 0.5" />
+                        </Inverter>
+                        <SimpleChase  stop_dist="0.5" stop_angle="0.3" vx_limit="0.5" vy_limit="0.5" />       <!-- SimpleChase -->
+                     </Sequence>
+                  </KeepRunningUntilFailure>
+                  
+                  <KeepRunningUntilFailure>
+                     <SetVelocity x="0.3" y="0.0" theta="0.0" />      <!-- 드리블 시작 -->
+                  </KeepRunningUntilFailure>
+               </Sequence>
+            </ReactiveSequence>
+        </Sequence>
+     </BehaviorTree>
+</root>
