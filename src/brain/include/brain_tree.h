@@ -179,13 +179,18 @@ public:
     static PortsList providedPorts()
     {
         return {
-            InputPort<double>("turn_threshold", 0.2, "If the angle to the ball exceeds this value, the robot will first turn to face the ball"),
-            InputPort<double>("vx_limit", 0.1, "Limit for vx during adjustment, [-limit, limit]"),
-            InputPort<double>("vy_limit", 0.1, "Limit for vy during adjustment, [-limit, limit]"),
-            InputPort<double>("vtheta_limit", 0.4, "Limit for vtheta during adjustment, [-limit, limit]"),
-            InputPort<double>("max_range", 1.5, "When the ball range exceeds this value, move slightly forward"),
-            InputPort<double>("min_range", 1.0, "When the ball range is smaller than this value, move slightly backward"),
-            InputPort<string>("position", "offense", "offense | defense, determines which direction to kick the ball"),
+            InputPort<double>("turn_threshold", 3.25, "공과의 각도가 이 값보다 크면, 로봇은 먼저 회전하여 공을 향하고 직선 이동은 잠시 멈춘다."),
+            InputPort<double>("vx_limit", 0.05, "정렬 과정에서 사용할 vx 제한값이다. 범위는 [-limit, limit]."),
+            InputPort<double>("vy_limit", 0.05, "정렬 과정에서 사용할 vy 제한값이다. 범위는 [-limit, limit]"),
+            InputPort<double>("vtheta_limit", 0.1, "정렬 과정에서 사용할 회전속도(vtheta) 제한값이다. 범위는 [-limit, limit]."),
+            InputPort<double>("range", 2.25, "공과의 거리를 이 값으로 유지하려고 한다."),
+            InputPort<double>("vtheta_factor", 3.0, "각도를 조정할 때 회전속도(vtheta)에 곱해지는 계수이다. 값이 클수록 더 빠르게 회전한다."),
+            InputPort<double>("tangential_speed_far", 0.2, "각도 조정 시, 공이 멀리 있을 때 사용하는 접선 이동 속도."),
+            InputPort<double>("tangential_speed_near", 0.15, "각도 조정 시, 공이 가까울 때 사용하는 접선 이동 속도."),
+            InputPort<double>("near_threshold", 0.8, "목표 거리(공과의 거리)가 이 값보다 작으면 가까울 때의 속도(near speed)를 사용한다."),
+            InputPort<double>("no_turn_threshold", 0.1, "각도 차이가 이 값보다 작으면 로봇은 회전하지 않는다."),
+            InputPort<double>("turn_first_threshold", 0.5, "각도 차이가 이 값보다 크면, 로봇은 이동하지 않고 먼저 회전한다."),
+
         };
     }
 
