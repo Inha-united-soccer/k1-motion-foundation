@@ -14,6 +14,15 @@
                         <SimpleChase  stop_dist="0.5" stop_angle="0.3" vx_limit="0.5" vy_limit="0.5" />       <!-- SimpleChase -->
                      </Sequence>
                   </KeepRunningUntilFailure>
+
+                  <Sequence>
+                        <Adjust
+                            turn_threshold="0.5" range="0.4"
+                            vx_limit="0.7" vy_limit="0.6" vtheta_limit="1.5"
+                            vtheta_factor="1.5"
+                            tangential_speed_far="0.7"
+                            tangential_speed_near="0.15" />
+                  </Sequence>
                   
                   <KeepRunningUntilFailure>
                      <SetVelocity x="0.3" y="0.0" theta="0.0" />      <!-- 드리블 시작 -->

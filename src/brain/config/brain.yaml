@@ -12,6 +12,11 @@ brain_node:
       odom_factor: 1.2
       vx_factor: 0.90
       yaw_offset: 0.10
+
+      # brain_tree.h
+      vx_limit: 1.0
+      vy_limit: 0.4
+      vtheta_limit: 1.2
     
     enable_com: true
 
